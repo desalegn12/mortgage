@@ -174,7 +174,9 @@ const NavigationBar = ({ setMonthly, children }) => {
 
 				<div className="navbar-header">
 					<div className="navbar-brand">
-						<button onClick={setMonthly} style={buttonStyling}>
+						<button
+							onClick={setMonthly}
+							style={{ ...buttonStyling, ...activeStyling }}>
 							Monthly regression
 						</button>
 					</div>
@@ -186,3 +188,8 @@ const NavigationBar = ({ setMonthly, children }) => {
 };
 
 const buttonStyling = { background: "transparent", border: "none" };
+
+const activeStyling = {
+	fontWeight: "bold",
+	textDecoration: "underline",
+};
