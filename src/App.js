@@ -38,7 +38,7 @@ export default () => {
 	console.log(monthlyPayment);
 	const visual = (
 		<div>
-			<NavigationBar setMonthly={() => setMonthly(!monthly)}>
+			<NavigationBar setMonthly={() => setMonthly(!monthly)} monthly={monthly}>
 				{monthly ? (
 					<MonthlyGraph
 						graphStyle="container-fluid"
@@ -160,14 +160,20 @@ export default () => {
 	return visual;
 };
 
-const NavigationBar = ({ setMonthly, children }) => {
+const NavigationBar = ({ setMonthly, children, monthly }) => {
 	return (
 		<div>
 			<nav className="navbar navbar-default">
 				<div className="navbar-header">
 					<div className="navbar-brand">
-						<button onClick={setMonthly} style={buttonStyling}>
-							Mortgage Overpayment Calculator
+						<button
+							onClick={setMonthly}
+							style={
+								!monthly
+									? { ...buttonStyling, ...activeStyling }
+									: buttonStyling
+							}>
+							Living Cost
 						</button>
 					</div>
 				</div>
@@ -176,8 +182,10 @@ const NavigationBar = ({ setMonthly, children }) => {
 					<div className="navbar-brand">
 						<button
 							onClick={setMonthly}
-							style={{ ...buttonStyling, ...activeStyling }}>
-							Monthly regression
+							style={
+								monthly ? { ...buttonStyling, ...activeStyling } : buttonStyling
+							}>
+							Regression Graph
 						</button>
 					</div>
 				</div>
@@ -191,5 +199,5 @@ const buttonStyling = { background: "transparent", border: "none" };
 
 const activeStyling = {
 	fontWeight: "bold",
-	textDecoration: "underline",
+	textDecoration: "solid 5px underline rgb(50,255,200)",
 };
